@@ -131,15 +131,18 @@ header > aside > hr {
   header > aside {
     max-width: 80%;
     margin: 2rem auto 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     text-align: left;
   }
   header > aside > div {
     text-align: left;
     height: 100%;
     padding: 0 1rem;
+    border-left: 2px solid rgba(0, 0, 0, 0.05);
+  }
+  header > aside > div:first-child {
+    border: none;
   }
 
   header > aside > hr {

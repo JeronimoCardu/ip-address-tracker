@@ -23,31 +23,29 @@
       <div>
         <input
           id="ipInput"
+          autocomplete="off"
           type="text"
           placeholder="Search for any IP address or domain" />
-        <button>
-          <img srcset='' src="/assets/images/icon-arrow.svg" alt="search" />
+        <button id="searchBtn">
+          <img srcset="" src="/assets/images/icon-arrow.svg" alt="search" />
         </button>
       </div>
       <aside>
         <div>
           <p class="addressTitles">IP ADDRESS</p>
-          <p class="addressValues">192.212.174.101</p>
+          <p id="ipSearched" class="addressValues">192.212.174.101</p>
         </div>
-        <hr />
         <div>
           <p class="addressTitles">LOCATION</p>
-          <p class="addressValues">Brooklyn, NY 10001</p>
+          <p id="location" class="addressValues">Brooklyn, NY 10001</p>
         </div>
-        <hr />
         <div>
           <p class="addressTitles">TIMEZONE</p>
-          <p class="addressValues">UTC-05:00</p>
+          <p id="timezone" class="addressValues">UTC-05:00</p>
         </div>
-        <hr />
         <div>
           <p class="addressTitles">ISP</p>
-          <p class="addressValues">SPACEX Starlink</p>
+          <p id="isp" class="addressValues">SPACEX Starlink</p>
         </div>
       </aside>
     </header>
