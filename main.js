@@ -8,7 +8,9 @@ const isp = document.getElementById('isp')
 /** Function get data address like ip, region, lat, lng*/
 
 async function getDataAddress(ipValue) {
-  const url = `https://geo.ipify.org/api/v2/country,city?apiKey=at_x5rQ5qqQKbHDKLEGBe4Y07fmZKOrj&ipAddress=${ipValue.trim()}`
+  const url = ipValue
+    ? `https://geo.ipify.org/api/v2/country,city?apiKey=at_x5rQ5qqQKbHDKLEGBe4Y07fmZKOrj&ipAddress=${ipValue.trim()}`
+    : 'https://geo.ipify.org/api/v2/country,city?apiKey=at_x5rQ5qqQKbHDKLEGBe4Y07fmZKOrj&ipAddress='
   const data = await fetch(url)
   const response = await data.json()
   return data.status >= 400
@@ -37,7 +39,7 @@ async function setNewValues() {
     marker.setLatLng([newData.lat, newData.lng])
   }
 }
-
+setNewValues()
 /** Events to search de new values */
 
 const searchBtn = document.getElementById('searchBtn')
