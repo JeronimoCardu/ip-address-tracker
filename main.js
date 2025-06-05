@@ -1,21 +1,14 @@
+/* VARIABLES */
 const ipInput = document.getElementById('ipInput')
-
-const map = L.map('map').setView([51.505, -0.09], 13)
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution:
-    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-}).addTo(map)
-
-let marker = L.marker([51.5, -0.09]).addTo(map)
-
 const ipSearched = document.getElementById('ipSearched')
 const nameLocation = document.getElementById('location')
 const timeZone = document.getElementById('timezone')
 const isp = document.getElementById('isp')
 
+/** Function get data address like ip, region, lat, lng*/
+
 async function getDataAddress(ipValue) {
-  const url = `https://geo.ipify.org/api/v2/country?apiKey=at_x5rQ5qqQKbHDKLEGBe4Y07fmZKOrj&ipAddress=${ipValue.trim()}`
+  const url = `https://geo.ipify.org/api/v2/country,city?apiKey=at_x5rQ5qqQKbHDKLEGBe4Y07fmZKOrj&ipAddress=${ipValue.trim()}`
   const data = await fetch(url)
   const response = await data.json()
   return data.status >= 400
@@ -25,20 +18,41 @@ async function getDataAddress(ipValue) {
         location: `${response.location.region}, ${response.location.country}`,
         timezone: `UTC ${response.location.timezone}`,
         isp: response.isp,
+        lat: response.location.lat,
+        lng: response.location.lng,
       }
 }
+
+/** Function that set the values in the DOM */
 async function setNewValues() {
   const valueIpInput = ipInput.value
   const newData = await getDataAddress(valueIpInput)
-  ipSearched.textContent = newData.ip ? newData.location : 'none'
+  ipSearched.textContent = newData.ip ? newData.ip : 'none'
   nameLocation.textContent = newData.location ? newData.location : 'none'
   timeZone.textContent = newData.timezone ? newData.timezone : 'none'
   isp.textContent = newData.isp ? newData.isp : 'none'
-  console.log(newData)
+
+  if (newData.lat && newData.lng) {
+    map.setView([newData.lat, newData.lng], 13)
+    marker.setLatLng([newData.lat, newData.lng])
+  }
 }
+
+/** Events to search de new values */
 
 const searchBtn = document.getElementById('searchBtn')
 searchBtn.addEventListener('click', async () => setNewValues())
 document.addEventListener('keydown', async (e) => {
   if (e.key === 'Enter') setNewValues()
 })
+
+/** Map -- LeafletJS -- */
+
+let map = L.map('map').setView([34.04, -118.09], 13)
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution:
+    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map)
+
+let marker = L.marker([34.04, -118.09]).addTo(map)

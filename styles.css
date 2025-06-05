@@ -124,6 +124,9 @@ header > aside > hr {
   header {
     background-image: url(assets/images/pattern-bg-desktop.png);
   }
+  header h1 {
+    font-size: 2rem;
+  }
   header > div {
     max-width: 40%;
     margin: 0 auto;
@@ -148,5 +151,11 @@ header > aside > hr {
   header > aside > hr {
     display: block;
     opacity: 20%;
+  }
+  .addressTitles {
+    font-size: 0.75rem;
+  }
+  .addressValues {
+    font-size: 1.625rem;
   }
 }
