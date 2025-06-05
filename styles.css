@@ -132,7 +132,7 @@ header > aside > hr {
     margin: 0 auto;
   }
   header > aside {
-    max-width: 80%;
+    max-width: 70%;
     margin: 2rem auto 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);

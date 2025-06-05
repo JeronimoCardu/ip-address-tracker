@@ -33,7 +33,7 @@ async function setNewValues() {
   isp.textContent = newData.isp ? newData.isp : 'none'
 
   if (newData.lat && newData.lng) {
-    map.setView([newData.lat, newData.lng], 13)
+    map.setView([newData.lat, newData.lng], 17)
     marker.setLatLng([newData.lat, newData.lng])
   }
 }
@@ -48,7 +48,7 @@ document.addEventListener('keydown', async (e) => {
 
 /** Map -- LeafletJS -- */
 
-let map = L.map('map').setView([34.04, -118.09], 13)
+let map = L.map('map').setView([34.04, -118.09], 17)
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution:
